@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from './Nav';
-import { getCelebrityData } from '../utils/jokes-api';
 
 class CelebrityJokes extends Component {
 
@@ -10,14 +9,7 @@ class CelebrityJokes extends Component {
     this.state = { jokes: [] };
   }
 
-  getCelebrityJokes() {
-    getCelebrityData().then((jokes) => {
-      this.setState({ jokes });
-    });
-  }
-
   componentDidMount() {
-    this.getCelebrityJokes();
   }
 
   render() {

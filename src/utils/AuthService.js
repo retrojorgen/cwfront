@@ -6,7 +6,7 @@ const ACCESS_TOKEN_KEY = 'access_token';
 const CLIENT_ID = 'APfeCpWgZhRoNKnDznDCsaXaBk92SG76';
 const CLIENT_DOMAIN = 'crewportal.eu.auth0.com';
 const REDIRECT = 'http://localhost:3000/callback';
-const SCOPE = 'openid profile';
+const SCOPE = 'openid profile offline_access email';
 const AUDIENCE = 'http://crewportalen.io';
 
 var auth = new auth0.WebAuth({
@@ -71,6 +71,7 @@ export function setIdToken() {
 
 export function isLoggedIn() {
   const idToken = getIdToken();
+  //console.log(idToken, isTokenExpired(idToken));
   return !!idToken && !isTokenExpired(idToken);
 }
 
@@ -82,6 +83,7 @@ function getTokenExpirationDate(encodedToken) {
   date.setUTCSeconds(token.exp);
 
   return date;
+  
 }
 
 function isTokenExpired(token) {

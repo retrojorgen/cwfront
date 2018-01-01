@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CelebrityJokes from './components/CelebrityJokes';
-import FoodJokes from './components/FoodJokes';
+import EventsList from './components/EventsList';
 import Callback from './components/Callback';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import indexcss from './index.css';
@@ -12,7 +12,7 @@ const Root = () => {
     <div className="container">
       <Router>
         <Switch>
-          <Route path="/" component={FoodJokes}  exact={true} />
+          <Route path="/" component={EventsList}  exact={true} />
           <Route path="/special" component={CelebrityJokes} onEnter={requireAuth}/>
           <Route path="/callback" component={Callback} />
         </Switch>
