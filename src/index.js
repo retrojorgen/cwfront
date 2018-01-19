@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CelebrityJokes from './components/CelebrityJokes';
 import EventsList from './components/EventsList';
+import EventView from './components/EventView';
+import FrontPage from './components/FrontPage';
 import Callback from './components/Callback';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import indexcss from './index.css';
 import { requireAuth } from './utils/AuthService';
 
 const Root = () => {
@@ -12,8 +12,9 @@ const Root = () => {
     <div className="container">
       <Router>
         <Switch>
-          <Route path="/" component={EventsList}  exact={true} />
-          <Route path="/special" component={CelebrityJokes} onEnter={requireAuth}/>
+          <Route path="/" component={FrontPage} exact={true} />
+          <Route path="/events" component={EventsList}  onEnter={requireAuth} exact={true} />
+          <Route path="/event/view/:id" component={EventView} onEnter={requireAuth} exact={true} />
           <Route path="/callback" component={Callback} />
         </Switch>
       </Router>

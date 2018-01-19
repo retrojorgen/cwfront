@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { login, logout, isLoggedIn } from '../utils/AuthService';
 
 
 
@@ -37,7 +35,7 @@ class UserInfo extends Component {
   }
 
   render () {
-    let user = this.props.user || false; 
+    //let user = this.props.user || false; 
     let userFullName = this.props.user.name;
     let userPhoto = this.props.user && this.props.user.userInfoBlob && this.props.user.userInfoBlob.picture ? this.props.user.userInfoBlob.picture : '';
 

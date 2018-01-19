@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { login, logout, isLoggedIn } from '../utils/AuthService';
 import logo from '../images/crewportalen-black.svg';
@@ -49,13 +48,37 @@ const standardBigButton = styled.button`
   &:hover {
     box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
   }
+  span {
+    position: relative;
+  }
 `;
 
 const LoginButton = styled(standardBigButton)`
   background: linear-gradient(90deg, #4756e3, #f56afa);
+  background: linear-gradient(0deg, #4756e3, #4b34c2);
   color: white;
   border-color: transparent;
+  border: 0;
+  transition: all 0.25s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  &:before {
+    position: absolute;
+    left: 0;
+    transform: translateX(100%);
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #f56afa);
+    content: "";
+    transition: all 0.1s ease-in-out;
+  }
   &:hover {
+    &:before {
+      content: "";
+      transform: translateX(0);
+    }
+    
   }
 `;
 
@@ -76,7 +99,7 @@ class Nav extends Component {
   }
 
   componentDidUpdate(prev) {
-    console.log('got stuff', this.props, prev);
+
   }
 
   render () {
@@ -84,7 +107,7 @@ class Nav extends Component {
     return (
       <Navbar>
         <NavbarHeader>
-          <NavLink to="/">Crewportalen</NavLink>
+          
         </NavbarHeader>
 
         
@@ -93,11 +116,11 @@ class Nav extends Component {
              (isLoggedIn()) ? (
                 <UserBar>
                   <UserInfo user={user} />
-                  <LogoutButton onClick={() => logout()}>Logg ut </LogoutButton> 
+                  <LogoutButton onClick={() => logout()}><span>Logg ut</span></LogoutButton> 
                 </UserBar>
                ) 
               : 
-              ( <LoginButton onClick={() => login()}>Logg Inn</LoginButton> )
+              ( <LoginButton onClick={() => login()}><span>Logg Inn</span></LoginButton> )
            }
         
 
@@ -108,3 +131,4 @@ class Nav extends Component {
 
 export default Nav;
 
+//<NavLink to="/">Crewportalen</NavLink>
