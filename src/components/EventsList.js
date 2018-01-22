@@ -12,6 +12,7 @@ import {
   addUserToPending } from '../utils/api';
 import Moment from 'react-moment';
 import 'moment/locale/nb';
+import { ContentWrap } from './CommonWrappers';
 //import {FaCalendarO} from 'react-icons/lib/fa'
 
 import { isLoggedIn } from '../utils/AuthService';
@@ -77,10 +78,7 @@ const AddEvent = styled.div`
   }
 `;
 
-const ContentWrap = styled.div`
-  max-width: 1000px;
-  margin: 120px auto 0 auto;
-`;
+
 
 
 

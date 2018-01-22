@@ -44,6 +44,19 @@ function addUserToPending(eventId) {
   });
 }
 
+function getEvent(id) {
+  const url = `${BASE_URL}/api/event/${id}`;
+
+
+  return axios.get(url, {
+     headers: {
+       Authorization: `Bearer ${getAccessToken()}`
+     } 
+  }).then(response => {
+    return response.data;
+  });
+}
+
 function getEvents() {
   const url = `${BASE_URL}/api/events`;
 
@@ -86,12 +99,8 @@ function getPendingEvents() {
 
 
 
-
 function getUserData() {
   const url = `${BASE_URL}/api/user`;
-
-  if(userData)
-    return userData;
 
   return axios.get(url, {
      headers: {
@@ -103,4 +112,13 @@ function getUserData() {
   });
 }
 
-export {getUserData, userData, createEvent, getEvents, getOtherEvents, getPendingEvents, addUserToPending};
+export {
+  getUserData, 
+  userData, 
+  createEvent, 
+  getEvents, 
+  getOtherEvents, 
+  getPendingEvents, 
+  addUserToPending,
+  getEvent
+};
