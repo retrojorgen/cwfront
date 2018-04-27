@@ -11,7 +11,7 @@ const Userbar = styled.div`
 
 const Username = styled.span`
   font-size: 13px;
-  color: #9a9a9a;
+  color: white;
   display: inline-block;
 `;
 
@@ -50,4 +50,5 @@ class UserInfo extends Component {
 }
 
 export default UserInfo;
+export { Userphoto };
 

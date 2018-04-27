@@ -5,13 +5,14 @@ import Nav from './Nav';
 import { getUserData, getEvent } from '../utils/api';
 //import Moment from 'react-moment';
 import 'moment/locale/nb';
-
+import EventHeader from './EventHeader';
 import { isLoggedIn } from '../utils/AuthService';
-import { ContentWrap } from './CommonWrappers';
+import { ContentWrap, ItemsTableWrapper } from './CommonWrappers';
+import { Userphoto } from './UserInfo';
 
 const EventName = styled.h1`
-
 `;
+
 
 class EventView extends Component {
   constructor() {
@@ -24,8 +25,10 @@ class EventView extends Component {
   }
 
   getUser () {
+    console.log('getting user', 'yo', isLoggedIn());
     if(isLoggedIn()) {
       getUserData().then((data) => {
+        console.log('getting user',data);
         this.setState({userData: data});
       });
     }
@@ -79,10 +82,35 @@ class EventView extends Component {
       
       <div>
         <Nav userData={this.state.userData}/>
+        <EventHeader name={event.name} from={event.from} to={event.to} />
         <ContentWrap>
-          <EventName>
-            {event.name}
-          </EventName>
+          
+          <ItemsTableWrapper>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Navn</th>
+                  <th>Telefonnummer</th>
+                  <th>Crew</th>
+                  <th>Leder</th>
+                  <th>Verifisert</th>
+                </tr>
+              </thead>
+              <tbody>
+              {members.map((member, key) => (
+                  <tr key={key}>
+                    <td style={{width: '50px'}}><Userphoto photo={member.memberInfo.userInfoBlob.picture} /></td>
+                    <td>{member.memberInfo.name}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </ItemsTableWrapper>
         </ContentWrap>
       </div>
     );

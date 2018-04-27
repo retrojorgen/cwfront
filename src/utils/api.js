@@ -44,6 +44,18 @@ function addUserToPending(eventId) {
   });
 }
 
+function updateUserProfile(update) {
+  const url = `${BASE_URL}/api/user/update/profile`;
+
+  return axios.put(url, update, {
+     headers: {
+       Authorization: `Bearer ${getAccessToken()}`
+     } 
+  }).then(response => {
+    return response.data;
+  });
+}
+
 function getEvent(id) {
   const url = `${BASE_URL}/api/event/${id}`;
 
@@ -97,8 +109,6 @@ function getPendingEvents() {
   });
 }
 
-
-
 function getUserData() {
   const url = `${BASE_URL}/api/user`;
 
@@ -112,13 +122,28 @@ function getUserData() {
   });
 }
 
+function getUserDataFromID(id) {
+  const url = `${BASE_URL}/api/user/${id}`;
+
+  return axios.get(url, {
+     headers: {
+       Authorization: `Bearer ${getAccessToken()}`
+     } 
+  }).then(response => {
+    userData = response.data;
+    return response.data;
+  });
+}
+
 export {
   getUserData, 
+  getUserDataFromID,
   userData, 
   createEvent, 
   getEvents, 
   getOtherEvents, 
   getPendingEvents, 
   addUserToPending,
-  getEvent
+  getEvent,
+  updateUserProfile
 };

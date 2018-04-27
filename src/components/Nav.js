@@ -5,12 +5,10 @@ import logo from '../images/crewportalen-black.svg';
 import UserInfo from './UserInfo';
 
 const Navbar = styled.nav`
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 60px;
-  background-color: #ffffff;
+  background: linear-gradient(45deg, #b946ee, #ee47a7);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +18,7 @@ const Navbar = styled.nav`
 
 const UserBar = styled.div`
   display: flex;
+  color: white;
 `;
 
 const NavbarHeader = styled.div`

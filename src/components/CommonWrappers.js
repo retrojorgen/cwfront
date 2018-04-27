@@ -2,85 +2,51 @@ import styled from 'styled-components';
 
 const ContentWrap = styled.div`
   max-width: 1000px;
-  margin: 120px auto 0 auto;
+  margin: 0 auto 0 auto;
+`;
+
+const ContentWrapNarrow = styled.div`
+  max-width: 900px;
+  margin: 0 auto 0 auto;
 `;
 
 
-const EventsHeader = styled.h2`
-  color: #7e7e7e;
-  font-size: 20px;
-`;
 
-
-const itemsListWrapper = styled.ul`
+const ItemsTableWrapper = styled.div`
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 40px;
+  margin-top: 40px;
+  width: 100%;
+  background-color: white;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    thead {
+      th {
+        text-transform: uppercase;
+        text-align: left;
+        border-bottom: 1px solid #E9EBEC;
+        color: #A9AFB5;
+        font-size: 12px;
+        font-size: 0.75rem;
+        padding: 10px 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+    }
+    tbody {
+      td {
+        padding: 20px 10px;
+        border-bottom: 1px solid #E9EBEC;
+      }
+    }
+  }
 `;
 
-const itemsListItem = styled.li`
-  display: flex;
-  padding: 2px;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 14px 20px #4a90e21f;
-  margin-bottom: 1px;
-  border-radius: 4px;
-
-  .left-col {
-    .color {
-      background: linear-gradient(0deg, #4756e3, #4b34c2);
-      width: 30px;
-      height: 30px;
-      display: inline-block;
-      margin: 20px 20px 20px 20px;
-      border-radius: 50%;
-    }
-    .name {
-      color: ##696968;
-      font-size: 16px;
-      margin-right: 20px;
-    }
-
-    .time-to {
-      font-size: 10px;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      background-color: #f5f3f3;
-      color: #696968;
-      border-radius: 20px;
-    }
-    display: flex;
-    align-items: center;
-  }
-  .right-col {
-    .members {
-      font-size: 10px;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      border: 1px solid #f5f3f3;
-      background-color: white;
-      color: #696968;
-      border-radius: 20px;
-      margin-right: 20px;
-    }
-    .apply-for-membership {
-      background: linear-gradient(90deg, #4756e3, #4b34c2);
-      padding: 10px 20px;
-      color: white;
-      font-size: 10px;
-      font-weight: bold;
-      margin-right: 20px;
-      text-transform: uppercase;
-      border: 0;
-      border-radius: 20px;
-      cursor: pointer;
-      outline: none;
-    }
-  }
+const ItemsListItem = styled.div`
 `;
 
 export default ContentWrap;
 
-export { ContentWrap, itemsListWrapper, itemsListItem};
+export { ContentWrap, ContentWrapNarrow, ItemsTableWrapper };

@@ -5,6 +5,7 @@
   "dependencies": {
     "auth0-js": "^8.11.2",
     "axios": "^0.17.0",
+    "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "moment": "^2.20.1",
     "react": "^16.1.0",

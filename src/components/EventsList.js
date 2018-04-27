@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './Nav';
+import { Add, Access } from './Buttons';
 import AddEventForm from './AddEventForm';
 import { 
   getUserData, 
@@ -19,144 +19,9 @@ import { isLoggedIn } from '../utils/AuthService';
 import { LoadingBlock } from './Loaders.js';
 
 
-const Events = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
+const Events = styled(Add)``;
 
-const AddEvent = styled.div`
-  height: 300px;
-  width: 260px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid transparent;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
-  border-radius: 4px;
-  padding: 20px;
-  transition: all 0.2s ease-in;
-  cursor: pointer;
-  outline: none;
-  margin: 20px;
-  box-shadow: 0 14px 20px #4a90e21f;
-  &:hover {
-    box-shadow: 0 14px 20px #4a90e247;
-  }
-
-  .Addevent-plus {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: #4756e3;
-    width: 50px;
-    height: 50px;
-    font-size: 22px;
-
-    transform: translateX(-25px) translateY(-40px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #4756e3;
-      opacity: 0.1;
-    }
-  }
-
-  .Addevent-label {
-    color: #4756e3;
-    font-size: 12px;
-  }
-`;
-
-
-
-
-
-const Event = styled(AddEvent)`
-  justify-content: flex-start;
-  border: 0px solid transparent;
-  color: white;
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-  .title {
-    font-size: 16px;
-    text-align: left;
-    color: #696968;
-    font-weight: normal;
-    padding: 20px 30px;
-    width: 100%;
-    margin: 0;
-  }
-
-  .from-to-date {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-  }
-
-  .members {
-    text-align: left;
-    width: 100%;
-    padding: 0 30px 20px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .show-arrangement {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    opacity: 0;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px;
-    .show-arrangement-button {
-      width: 100%;
-      padding: 12px 20px;
-      text-align: center;
-      color: #696968;
-      font-size: 11px;
-      text-transform: uppercase;
-      background-color: white;
-      background-color: white;
-      border-radius: 16px;
-      
-    }
-  }
-  
-  &:hover {
-    .show-arrangement {
-      opacity: 1;
-    }
-  }
-`;
-
-const EventGoToButton = styled.div`
-  width: 100%;
-  color: #6A6A6A;
-  text-align: center;
-  font-size: 11px;
-  text-transform: uppercase;
-  padding: 20px 30px;
+const Event = styled(Access)`
 `;
 
 const EventTitle = styled.div`
@@ -212,76 +77,6 @@ const MemberCount = styled.div`
 const EventsHeader = styled.h2`
   color: #7e7e7e;
   font-size: 20px;
-`;
-
-
-const EventsListing = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const EventsListItem = styled.li`
-  display: flex;
-  padding: 2px;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 14px 20px #4a90e21f;
-  margin-bottom: 1px;
-  border-radius: 4px;
-
-  .left-col {
-    .color {
-      background: linear-gradient(0deg, #4756e3, #4b34c2);
-      width: 30px;
-      height: 30px;
-      display: inline-block;
-      margin: 20px 20px 20px 20px;
-      border-radius: 50%;
-    }
-    .name {
-      color: ##696968;
-      font-size: 16px;
-      margin-right: 20px;
-    }
-
-    .time-to {
-      font-size: 10px;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      background-color: #f5f3f3;
-      color: #696968;
-      border-radius: 20px;
-    }
-    display: flex;
-    align-items: center;
-  }
-  .right-col {
-    .members {
-      font-size: 10px;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      border: 1px solid #f5f3f3;
-      background-color: white;
-      color: #696968;
-      border-radius: 20px;
-      margin-right: 20px;
-    }
-    .apply-for-membership {
-      background: linear-gradient(90deg, #4756e3, #4b34c2);
-      padding: 10px 20px;
-      color: white;
-      font-size: 10px;
-      font-weight: bold;
-      margin-right: 20px;
-      text-transform: uppercase;
-      border: 0;
-      border-radius: 20px;
-      cursor: pointer;
-      outline: none;
-    }
-  }
 `;
 
 class EventsList extends Component {
@@ -364,7 +159,7 @@ class EventsList extends Component {
 
     let otherEvents = this.state.otherEvents.map((event, key) => {
       return(
-        <EventsListItem key={key.toString()}>
+        <div key={key.toString()}>
           <div className="left-col">
             <span className="color"></span>
             <span className="name">{event.name}</span>
@@ -380,13 +175,13 @@ class EventsList extends Component {
               )}
             </button>
           </div>
-        </EventsListItem>
+        </div>
       )
     });
 
     let pendingEvents = this.state.pendingEvents.map((event, key) => {
       return(
-        <EventsListItem key={key.toString()}>
+        <div key={key.toString()}>
           <div className="left-col">
             <span className="color"></span>
             <span className="name">{event.name}</span>
@@ -402,7 +197,7 @@ class EventsList extends Component {
               )}
             </button>
           </div>
-        </EventsListItem>
+        </div>
       )
     });
 
@@ -424,7 +219,7 @@ class EventsList extends Component {
       });
       
       return (
-        <Event key={key.toString()}>
+        <Event key={key.toString()} to={`/event/view/${event._id}`}>
           <EventTitle>
             <span className="event-header-title">{event.name.split(" ")[0]}</span>
             <span className="date-to"><Moment locale="nb" from={now}>{toDate}</Moment></span>
@@ -433,11 +228,6 @@ class EventsList extends Component {
           <div className="members">
             {membersList} <MemberCount amount={event.members.length} />
           </div>
-          <EventGoToButton></EventGoToButton>
-          <NavLink to={`/event/view/${event._id}`} className="show-arrangement">
-          
-            <div className="show-arrangement-button">Åpne arrangement</div>
-          </NavLink>
         </Event>
       )
     });
@@ -449,23 +239,23 @@ class EventsList extends Component {
         <ContentWrap>
           <EventsHeader>Dine arrangement</EventsHeader>
           <Events>
-            <AddEvent onClick={this.openAddEventForm.bind(this)}>
+            <Add onClick={this.openAddEventForm.bind(this)}>
               <span className="Addevent-plus">+</span>
               <span className="Addevent-label">Opprett arrangement</span>
-            </AddEvent>
+            </Add>
             {events}
           </Events>
             <div>
               <EventsHeader>Dine søknader</EventsHeader>
-              <EventsListing>
+              <div>
                 {pendingEvents}
-              </EventsListing>
+              </div>
             </div>
             <div>
               <EventsHeader>Andre arrangement</EventsHeader>
-              <EventsListing>
+              <div>
                 {otherEvents}
-              </EventsListing>
+              </div>
             </div>
           <AddEventForm open={this.state.openAddEventForm} eventCreated={this.eventCreated.bind(this)}/>
         </ContentWrap>
